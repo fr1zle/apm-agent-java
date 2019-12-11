@@ -103,6 +103,7 @@ public abstract class HttpUrlConnectionInstrumentation extends ElasticApmInstrum
                 // if the response code is set, the connection has been established via getOutputStream
                 // if the response code is unset even after getOutputStream has been called, there will be an exception
                 span.getContext().getHttp().withStatusCode(responseCode);
+                thiz.getHeaderFields();
                 span.captureException(t).end();
             } else if (t != null) {
                 inFlightSpans.remove(thiz);
